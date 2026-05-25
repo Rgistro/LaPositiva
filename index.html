@@ -2,57 +2,188 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Confirmación de Boda</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmación de Asistencia - Evento Corporativo</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:italic,wght@400;700&family=Raleway:wght@300&display=swap');
-        body { background-color: #fcf9f2; font-family: 'Raleway', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
-        .card { background: white; padding: 40px; border-radius: 4px; box-shadow: 0 5px 25px rgba(0,0,0,0.05); max-width: 400px; width: 90%; text-align: center; border: 1px solid #eee; }
-        h1 { font-family: 'Playfair Display', serif; color: #bc9c70; margin-bottom: 5px; }
-        .info { color: #888; font-size: 0.8em; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 30px; }
-        input, select, textarea { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #e0e0e0; box-sizing: border-box; background: #fafafa; }
-        button { width: 100%; padding: 15px; background: #bc9c70; color: white; border: none; cursor: pointer; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s; }
-        button:hover { background: #a6865a; }
-        #mensaje { display: none; color: #bc9c70; font-style: italic; margin-top: 20px; }
+        @import url('https://fonts.googleapis.com/css2?family=Helvetica+Neue:wght@300;400;700&family=Raleway:wght@300;400;600&display=swap');
+        
+        body { 
+            background-color: #fdfbfa; /* Fondo crema institucional muy claro */
+            font-family: 'Raleway', sans-serif; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            min-height: 100vh; 
+            margin: 0; 
+            padding: 20px;
+        }
+        .card { 
+            background: white; 
+            padding: 40px; 
+            border-radius: 8px; 
+            box-shadow: 0 10px 30px rgba(236, 104, 83, 0.08); /* Sombra sutil con tono de la marca */
+            max-width: 420px; 
+            width: 100%; 
+            text-align: center; 
+            border: 1px solid #f5ebe6; 
+        }
+        .logo-container {
+            margin-bottom: 25px;
+        }
+        .logo-placeholder {
+            max-width: 180px;
+            height: auto;
+        }
+        h1 { 
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            color: #EC6835; /* Naranja corporativo */
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 5px; 
+            letter-spacing: -0.5px;
+        }
+        .info { 
+            color: #666; 
+            font-size: 0.85em; 
+            letter-spacing: 1px; 
+            text-transform: uppercase; 
+            margin-bottom: 30px; 
+            font-weight: 600;
+        }
+        .info-detalles {
+            font-size: 0.95em;
+            color: #444;
+            margin-top: 5px;
+            text-transform: none;
+            letter-spacing: 0;
+        }
+        input, select, textarea { 
+            width: 100%; 
+            padding: 12px; 
+            margin: 10px 0; 
+            border: 1px solid #dcd0ca; 
+            box-sizing: border-box; 
+            background: #fcfbfa; 
+            font-family: inherit;
+            border-radius: 4px;
+            transition: border-color 0.3s;
+        }
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #EC6835; /* Cambio de color al seleccionar */
+        }
+        
+        button, .btn-download { 
+            width: 100%; 
+            padding: 15px; 
+            background: #EC6835; /* Naranja corporativo */
+            color: white; 
+            border: none; 
+            border-radius: 4px;
+            cursor: pointer; 
+            letter-spacing: 1px; 
+            text-transform: uppercase; 
+            transition: background 0.3s; 
+            font-size: 14px;
+            font-weight: 600;
+            margin-top: 15px;
+            display: block;
+            text-decoration: none;
+            box-sizing: border-box;
+        }
+        button:hover, .btn-download:hover { 
+            background: #d45322; /* Naranja más oscuro para el efecto hover */
+        }
+        
+        #contenedor-exito { display: none; margin-top: 20px; }
+        .msg-titulo { color: #EC6835; font-size: 22px; font-weight: 700; margin-bottom: 15px; }
+        .qr-box { margin: 20px auto; padding: 15px; background: white; border: 2px solid #EC6835; display: inline-block; border-radius: 4px; }
+        .qr-box img { display: block; max-width: 200px; height: auto; }
+        .instruccion { font-size: 0.9em; color: #555; margin-bottom: 15px; line-height: 1.4; }
     </style>
 </head>
 <body>
+
     <div class="card">
-        <h1>María & Juan</h1>
-        <div class="info">15.10.2024 • Hacienda La Querencia</div>
+        <div class="logo-container">
+            <img class="logo-placeholder" src="logo-la-positiva.png" alt="La Positiva Seguros">
+        </div>
+
+        <h1>Confirmación de Asistencia</h1>
+        <div class="info">
+            Evento Institucional
+            <div class="info-detalles">Fecha: [FECHA DEL EVENTO] <br> Lugar: [LUGAR DEL EVENTO]</div>
+        </div>
         
-        <form id="weddingForm">
+        <form id="corporateForm">
             <input type="text" name="nombres" placeholder="Nombres" required>
             <input type="text" name="apellidos" placeholder="Apellidos" required>
-            <input type="email" name="correo" placeholder="Correo electrónico" required>
-            <select name="asistencia" required>
-                <option value="" disabled selected>¿Asistirás?</option>
-                <option value="Sí">Sí, ¡con gusto!</option>
+            <input type="email" name="correo" placeholder="Correo electrónico institucional" required>
+            <select name="asistencia" id="asistenciaSelect" required>
+                <option value="" disabled selected>¿Confirmas tu asistencia?</option>
+                <option value="Sí">Sí, asistiré</option>
                 <option value="No">No podré asistir</option>
             </select>
-            <textarea name="mensaje" placeholder="Mensaje para los novios (opcional)"></textarea>
-            <button type="submit" id="btnEnviar">Confirmar Asistencia</button>
+            <textarea name="mensaje" placeholder="Comentarios o requerimientos especiales (opcional)" rows="3"></textarea>
+            <button type="submit" id="btnEnviar">Enviar Confirmación</button>
         </form>
-        <div id="mensaje">¡Gracias! Hemos recibido tu respuesta.</div>
+
+        <div id="contenedor-exito">
+            <div class="msg-titulo" id="textoDinamico">¡Registro Exitoso!</div>
+            <p class="instruccion" id="subtextoDinamico">Hemos procesado tu información de manera correcta.</p>
+            
+            <div id="seccionQR" style="display: none;">
+                <div class="qr-box">
+                    <img id="qrImage" src="" alt="Código QR de acreditación">
+                </div>
+                <p class="instruccion">Presenta este código QR impreso o digital en la entrada del evento para validar tu ingreso.</p>
+                <a id="btnDescargar" class="btn-download" href="#" download="Acreditacion_Evento.png">Descargar Código QR</a>
+            </div>
+        </div>
     </div>
 
     <script>
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbwELgKS9VbimCNPrhExm_kI-a3zEU3oNmkRZFQMm_YdSuDTT9G1zGZXzekGOI8096d4/exec'; // <--- PEGA AQUÍ LA URL NUEVA
-        const form = document.getElementById('weddingForm');
+        const scriptURL = 'TU_URL_DE_APPS_SCRIPT_AQUI'; // <--- COLOCA AQUÍ TU LINK DE GOOGLE APPS SCRIPT
+        const form = document.getElementById('corporateForm');
 
         form.addEventListener('submit', e => {
             e.preventDefault();
             const btn = document.getElementById('btnEnviar');
-            btn.innerText = "ENVIANDO...";
+            btn.innerText = "PROCESANDO...";
             btn.disabled = true;
 
-            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-                .then(response => {
+            const nombres = form.nombres.value;
+            const apellidos = form.apellidos.value;
+            const asistencia = document.getElementById('asistenciaSelect').value;
+
+            // Generación de data idéntica para el QR
+            const qrData = "Invitado: " + nombres + " " + apellidos;
+            const qrUrl = "https://quickchart.io/qr?text=" + encodeURIComponent(qrData);
+
+            fetch(scriptURL, { method: 'POST', mode: 'no-cors', body: new FormData(form)})
+                .then(() => {
                     form.style.display = 'none';
-                    document.getElementById('mensaje').style.display = 'block';
+                    document.getElementById('contenedor-exito').style.display = 'block';
+
+                    if (asistencia === "Sí") {
+                        document.getElementById('textoDinamico').innerText = "¡Asistencia Confirmada!";
+                        document.getElementById('subtextoDinamico').innerText = "Te hemos enviado una copia de tu acreditación por correo electrónico. También puedes descargar tu credencial QR aquí mismo:";
+                        
+                        const qrImage = document.getElementById('qrImage');
+                        qrImage.src = qrUrl;
+                        
+                        const btnDescargar = document.getElementById('btnDescargar');
+                        btnDescargar.href = qrUrl;
+
+                        document.getElementById('seccionQR').style.display = 'block';
+                    } else {
+                        document.getElementById('textoDinamico').innerText = "Registro Recibido";
+                        document.getElementById('subtextoDinamico').innerText = "Agradecemos tu respuesta. Hemos tomado nota de que no podrás acompañarnos en esta oportunidad.";
+                    }
                 })
                 .catch(error => {
-                    alert('Error al enviar. Inténtalo de nuevo.');
-                    btn.innerText = "CONFIRMAR ASISTENCIA";
+                    alert('Error en la comunicación con el servidor. Por favor, intente nuevamente.');
+                    btn.innerText = "ENVIAR CONFIRMACIÓN";
                     btn.disabled = false;
                 });
         });
