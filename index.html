@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Confirmación de Asistencia - Evento Corporativo</title>
+    <title>Confirmación de Asistencia - La Positiva Seguros</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Helvetica+Neue:wght@300;400;700&family=Raleway:wght@300;400;600&display=swap');
         
         body { 
-            background-color: #fdfbfa; /* Fondo crema institucional muy claro */
+            background-color: #fdfbfa; 
             font-family: 'Raleway', sans-serif; 
             display: flex; 
             justify-content: center; 
@@ -21,26 +21,21 @@
             background: white; 
             padding: 40px; 
             border-radius: 8px; 
-            box-shadow: 0 10px 30px rgba(236, 104, 83, 0.08); /* Sombra sutil con tono de la marca */
+            box-shadow: 0 10px 30px rgba(236, 104, 83, 0.08); 
             max-width: 420px; 
             width: 100%; 
             text-align: center; 
             border: 1px solid #f5ebe6; 
         }
-        .logo-container {
-            margin-bottom: 25px;
-        }
-        .logo-placeholder {
-            max-width: 180px;
-            height: auto;
-        }
+        .logo-container { margin-bottom: 25px; }
+        .logo-placeholder { max-width: 180px; height: auto; }
+        
         h1 { 
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            color: #EC6835; /* Naranja corporativo */
+            color: #EC6835; 
             font-size: 24px;
             font-weight: 700;
             margin-bottom: 5px; 
-            letter-spacing: -0.5px;
         }
         .info { 
             color: #666; 
@@ -50,14 +45,9 @@
             margin-bottom: 30px; 
             font-weight: 600;
         }
-        .info-detalles {
-            font-size: 0.95em;
-            color: #444;
-            margin-top: 5px;
-            text-transform: none;
-            letter-spacing: 0;
-        }
-        input, select, textarea { 
+        .info-detalles { font-size: 0.95em; color: #444; margin-top: 5px; text-transform: none; letter-spacing: 0; }
+        
+        input, select { 
             width: 100%; 
             padding: 12px; 
             margin: 10px 0; 
@@ -68,15 +58,15 @@
             border-radius: 4px;
             transition: border-color 0.3s;
         }
-        input:focus, select:focus, textarea:focus {
-            outline: none;
-            border-color: #EC6835; /* Cambio de color al seleccionar */
-        }
+        input:focus, select:focus { outline: none; border-color: #EC6835; }
+        
+        /* Indicador sutil para campos inválidos en tiempo de escritura */
+        input:focused:invalid { border-color: #e63946; }
         
         button, .btn-download { 
             width: 100%; 
             padding: 15px; 
-            background: #EC6835; /* Naranja corporativo */
+            background: #EC6835; 
             color: white; 
             border: none; 
             border-radius: 4px;
@@ -91,9 +81,7 @@
             text-decoration: none;
             box-sizing: border-box;
         }
-        button:hover, .btn-download:hover { 
-            background: #d45322; /* Naranja más oscuro para el efecto hover */
-        }
+        button:hover, .btn-download:hover { background: #d45322; }
         
         #contenedor-exito { display: none; margin-top: 20px; }
         .msg-titulo { color: #EC6835; font-size: 22px; font-weight: 700; margin-bottom: 15px; }
@@ -106,7 +94,7 @@
 
     <div class="card">
         <div class="logo-container">
-            <img class="logo-placeholder" src="logo-la-positiva.png" alt="La Positiva Seguros">
+            <img class="logo-placeholder" src="logo-la-positiva.png" alt="La Positiva Seguros">[cite: 1]
         </div>
 
         <h1>Confirmación de Asistencia</h1>
@@ -115,19 +103,38 @@
             <div class="info-detalles">Fecha: [FECHA DEL EVENTO] <br> Lugar: [LUGAR DEL EVENTO]</div>
         </div>
         
+        <!-- Formulario con el nuevo orden de campos y restricciones estrictas -->
         <form id="corporateForm">
-            <input type="text" name="nombres" placeholder="Nombres" required>
-            <input type="text" name="apellidos" placeholder="Apellidos" required>
+            <!-- Nombres y Apellidos: Solo acepta letras de la A-Z, espacios y caracteres con tildes/eñes -->
+            <input type="text" name="nombreCompleto" placeholder="Nombres y Apellidos" required 
+                   pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$" title="Ingrese únicamente letras y espacios.">
+            
+            <!-- DNI: Solo enteros numéricos, exactamente 8 dígitos -->
+            <input type="text" name="dni" placeholder="DNI" required 
+                   pattern="^[0-9]{8}$" title="El DNI debe contener exactamente 8 números enteros.">
+            
+            <!-- Nombre de la Empresa: Solo acepta texto -->
+            <input type="text" name="empresa" placeholder="Nombre de la Empresa" required 
+                   pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s0-9.\-]+$" title="Ingrese el nombre de la organización.">
+            
+            <!-- Correo: Valida sintaxis estándar de email -->
             <input type="email" name="correo" placeholder="Correo electrónico institucional" required>
+            
+            <!-- Celular: Solo enteros numéricos, exactamente 9 dígitos -->
+            <input type="text" name="celular" placeholder="Celular" required 
+                   pattern="^[0-9]{9}$" title="El celular debe contener exactamente 9 números enteros.">
+            
+            <!-- Confirmación de Asistencia -->
             <select name="asistencia" id="asistenciaSelect" required>
                 <option value="" disabled selected>¿Confirmas tu asistencia?</option>
                 <option value="Sí">Sí, asistiré</option>
                 <option value="No">No podré asistir</option>
             </select>
-            <textarea name="mensaje" placeholder="Comentarios o requerimientos especiales (opcional)" rows="3"></textarea>
+            
             <button type="submit" id="btnEnviar">Enviar Confirmación</button>
         </form>
 
+        <!-- Contenedor de Éxito -->
         <div id="contenedor-exito">
             <div class="msg-titulo" id="textoDinamico">¡Registro Exitoso!</div>
             <p class="instruccion" id="subtextoDinamico">Hemos procesado tu información de manera correcta.</p>
@@ -143,7 +150,7 @@
     </div>
 
     <script>
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbwKf5IUaqrBNCXv0e5fKPG8AHUySw-3IJVxU7IRHyIZsbwcUMHKXdxwQDNz-onZgx8B/exec'; // <--- COLOCA AQUÍ TU LINK DE GOOGLE APPS SCRIPT
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzj_zNrTw6xS4dRxJg_6LPeG0ItzusVwt_LWaFGuiRFyTt4McBxeI-Xd9x9a1hoRE75/exec'; // <--- PEGA AQUÍ TU NUEVA URL DE GOOGLE APPS SCRIPT
         const form = document.getElementById('corporateForm');
 
         form.addEventListener('submit', e => {
@@ -152,12 +159,13 @@
             btn.innerText = "PROCESANDO...";
             btn.disabled = true;
 
-            const nombres = form.nombres.value;
-            const apellidos = form.apellidos.value;
+            const nombreCompleto = form.nombreCompleto.value;
+            const dni = form.dni.value;
+            const empresa = form.empresa.value;
             const asistencia = document.getElementById('asistenciaSelect').value;
 
-            // Generación de data idéntica para el QR
-            const qrData = "Invitado: " + nombres + " " + apellidos;
+            // Construcción del QR dinámico local idéntico al del servidor
+            const qrData = "DNI: " + dni + " | Empresa: " + empresa + " | Invitado: " + nombreCompleto;
             const qrUrl = "https://quickchart.io/qr?text=" + encodeURIComponent(qrData);
 
             fetch(scriptURL, { method: 'POST', mode: 'no-cors', body: new FormData(form)})
