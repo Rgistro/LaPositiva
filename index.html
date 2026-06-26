@@ -3,28 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Confirmación de Asistencia - La Positiva Seguros</title>
+    <title>Confirmación de Asistencia - Congreso Internacional</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Helvetica+Neue:wght@300;400;700&family=Raleway:wght@300;400;600&display=swap');
         
-        /* Animaciones mejoradas */
         @keyframes subtleScaleIn {
             0% { opacity: 0; transform: scale(0.96) translateY(15px); }
             100% { opacity: 1; transform: scale(1) translateY(0); }
         }
-        @keyframes continuousFloat {
-            0% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-8px) rotate(0.5deg); }
-            100% { transform: translateY(0px) rotate(0deg); }
+        /* Movimiento de paneo lento y envolvente para la imagen de fondo */
+        @keyframes backgroundPan {
+            0% { background-position: 0% 50%; background-size: 105% 105%; }
+            50% { background-position: 100% 50%; background-size: 110% 110%; }
+            100% { background-position: 0% 50%; background-size: 105% 105%; }
         }
         @keyframes particleFade {
             0% { opacity: 0; transform: translateY(0) scale(0.5); }
-            50% { opacity: 0.7; }
-            100% { opacity: 0; transform: translateY(-40px) scale(1.2); }
+            50% { opacity: 0.8; }
+            100% { opacity: 0; transform: translateY(-50px) scale(1.3); }
         }
 
         body { 
-            background-color: #fdfbfa; 
+            /* Imagen de fondo principal guiada por la gráfica */
+            background-image: url('kv lp2 - 2.jpg');
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-position: center;
+            animation: backgroundPan 30s ease-in-out infinite;
             font-family: 'Raleway', sans-serif; 
             display: flex; 
             justify-content: center; 
@@ -34,76 +39,150 @@
             padding: 20px;
             position: relative;
             overflow-x: hidden;
+            background-color: #080402; 
         }
 
-        /* Contenedor dinámico de partículas de fondo */
+        /* Capa de atenuación para garantizar un contraste perfecto */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(11, 5, 2, 0.35); 
+            z-index: 1;
+            pointer-events: none;
+        }
+
         #particles-container {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             pointer-events: none;
-            z-index: 1;
+            z-index: 2;
         }
 
         .particle {
             position: absolute;
-            background-color: #EC6835; /* Color del logo corporativo */
+            background-color: #fca05f; /* Chispas doradas brillantes estilo red de datos */
             border-radius: 50%;
-            animation: particleFade 4s ease-in-out infinite;
+            animation: particleFade 5s ease-in-out infinite;
         }
 
+        /* Tarjeta Dark Glassmorphism Premium */
         .card { 
-            background: rgba(255, 255, 255, 0.98); 
+            background: rgba(15, 9, 6, 0.90); 
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
             padding: 40px; 
             border-radius: 16px; 
-            box-shadow: 0 20px 45px rgba(236, 104, 83, 0.12); 
-            max-width: 440px; 
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7), 0 0 35px rgba(252, 160, 95, 0.1); 
+            max-width: 460px; 
             width: 100%; 
             text-align: center; 
-            border: 1px solid #f5ebe6; 
+            border: 1px solid rgba(252, 160, 95, 0.22); 
             animation: subtleScaleIn 0.9s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative;
-            z-index: 2; /* Por encima de los puntos flotantes */
+            z-index: 3;
         }
 
-        .logo-container { 
-            margin-bottom: 25px; 
-            display: inline-block;
-            animation: continuousFloat 4.5s ease-in-out infinite; /* Flotación optimizada */
+        /* Contenedor de Textos Superiores basados en la imagen corporativa */
+        .header-congreso {
+            margin-bottom: 25px;
+        }
+        
+        .header-congreso .congreso-titulo {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin: 0 0 10px 0;
+            line-height: 1.4;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            padding-bottom: 12px;
         }
 
-        .logo-placeholder { 
-            max-width: 210px; /* Un poco más grande para lucir la alta calidad */
-            height: auto; 
+        .header-congreso .lema-principal {
+            color: #fca05f; /* Dorado cobre */
+            font-size: 18px;
+            font-weight: 600;
+            margin: 10px 0 5px 0;
+        }
+
+        h1 { 
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; 
+            color: #ffffff; 
+            font-size: 26px; 
+            font-weight: 700; 
+            margin: 5px 0 15px 0;
+            line-height: 1.2;
         }
         
-        h1 { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #EC6835; font-size: 24px; font-weight: 700; margin-bottom: 5px; }
-        .info { color: #666; font-size: 0.85em; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 30px; font-weight: 600; }
-        .info-detalles { font-size: 0.95em; color: #444; margin-top: 5px; text-transform: none; letter-spacing: 0; }
+        .info-detalles { 
+            font-size: 0.95em; 
+            color: #dcd6d3; 
+            margin-top: 10px;
+            line-height: 1.5;
+            font-weight: 400;
+        }
         
+        /* Campos del Formulario */
         input, select { 
-            width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #dcd0ca; 
-            box-sizing: border-box; background: #fcfbfa; font-family: inherit; border-radius: 6px; transition: all 0.3s ease;
+            width: 100%; 
+            padding: 13px; 
+            margin: 9px 0; 
+            border: 1px solid rgba(252, 160, 95, 0.35); 
+            box-sizing: border-box; 
+            background: rgba(20, 12, 8, 0.75); 
+            color: #ffffff; 
+            font-family: inherit; 
+            font-size: 14px;
+            border-radius: 6px; 
+            transition: all 0.3s ease;
         }
-        input:focus, select:focus { outline: none; border-color: #EC6835; box-shadow: 0 0 8px rgba(236, 104, 83, 0.25); }
         
-        button, .btn-download { 
-            width: 100%; padding: 15px; background: #EC6835; color: white; border: none; border-radius: 6px;
-            cursor: pointer; letter-spacing: 1px; text-transform: uppercase; transition: background 0.3s, transform 0.2s; font-size: 14px; font-weight: 600; margin-top: 15px; display: block; text-decoration: none; box-sizing: border-box;
+        input::placeholder {
+            color: #a3928a; 
         }
-        button:hover, .btn-download:hover { background: #d45322; }
+
+        input:focus, select:focus { 
+            outline: none; 
+            border-color: #fca05f; 
+            background: rgba(30, 18, 12, 0.95);
+            box-shadow: 0 0 12px rgba(252, 160, 95, 0.35); 
+        }
+
+        select option {
+            background-color: #140b07;
+            color: #ffffff;
+        }
+        
+        /* Botones dorados/bronce integrados con la gama cromática */
+        button, .btn-download { 
+            width: 100%; padding: 15px; background: #e0843a; color: white; border: none; border-radius: 6px;
+            cursor: pointer; letter-spacing: 1.5px; text-transform: uppercase; transition: background 0.3s, transform 0.2s; font-size: 13px; font-weight: 700; margin-top: 15px; display: block; text-decoration: none; box-sizing: border-box;
+        }
+        button:hover, .btn-download:hover { background: #fca05f; box-shadow: 0 0 15px rgba(252, 160, 95, 0.35); }
         button:active { transform: scale(0.99); }
         
         #contenedor-exito { display: none; margin-top: 20px; animation: subtleScaleIn 0.5s ease-out; }
-        .preview-correo { font-family: Arial, sans-serif; color: #444; background-color: #fdfbfa; padding: 25px; border: 1px solid #EC6835; text-align: center; border-radius: 8px; margin-top: 20px; }
-        .msg-titulo { color: #EC6835; font-size: 22px; font-weight: 700; margin-bottom: 10px; }
-        .qr-box { margin: 20px auto; padding: 10px; background: white; border: 2px solid #EC6835; display: inline-block; border-radius: 4px; }
+        
+        /* Contenedor de la Invitación y QR */
+        .preview-correo { 
+            font-family: Arial, sans-serif; 
+            color: #ffffff; 
+            background-color: #120905; 
+            padding: 25px; 
+            border: 2px solid #e0843a; 
+            text-align: center; 
+            border-radius: 8px; 
+            margin-top: 20px; 
+        }
+        .msg-titulo { color: #fca05f; font-size: 22px; font-weight: 700; margin-bottom: 10px; }
+        .qr-box { margin: 20px auto; padding: 10px; background: white; border: 1px solid #dcd0ca; display: inline-block; border-radius: 4px; }
         .qr-box img { display: block; max-width: 180px; height: auto; }
-        .info-recuadro { background-color: #fff; border: 1px solid #dcd0ca; padding: 15px; border-radius: 4px; margin: 15px 0; }
-        .info-recuadro p { margin: 5px 0; font-size: 13px; }
-        .instruccion-final { font-size: 13px; color: #EC6835; font-weight: bold; margin-top: 15px; }
+        .info-recuadro { background-color: #1c100a; border: 1px solid rgba(252, 160, 95, 0.25); padding: 15px; border-radius: 4px; margin: 15px 0; text-align: left; }
+        .info-recuadro p { margin: 6px 0; font-size: 13px; color: #e1d5cf; }
+        .instruccion-final { font-size: 13px; color: #fca05f; font-weight: bold; margin-top: 15px; letter-spacing: 0.5px; }
     </style>
 </head>
 <body>
@@ -111,15 +190,17 @@
     <div id="particles-container"></div>
 
     <div class="card">
-        <div class="logo-container">
-            <img class="logo-placeholder" src="Loog La Positiva.jpg" alt="La Positiva Seguros">
+        <div class="header-congreso">
+            <p class="congreso-titulo">Congreso Internacional de Prevención de Riesgos Laborales</p>
+            <p class="lema-principal">Liderar en Zero:</p>
+            <h1>Transformando la SST en motor de productividad</h1>
         </div>
-
-        <h1>Confirmación de Asistencia</h1>
-        <div class="info">
-            Congreso Internacional de Prevención de Riesgos Laborales
-            <div class="info-detalles">Fecha: 19 de agosto del 2026 <br> Lugar: Hotel Marriot </div>
+        
+        <div class="info-detalles">
+            <b>VISION ZERO</b><br>
+            [FECHA DEL EVENTO] | [LUGAR DEL EVENTO]
         </div>
+        <br>
         
         <form id="corporateForm">
             <input type="text" name="nombreCompleto" placeholder="Nombres y Apellidos" required 
@@ -148,58 +229,51 @@
         <div id="contenedor-exito">
             <div id="vistaAsistira" style="display: none;">
                 <div class="preview-correo">
-                    <h1 class="msg-titulo">¡Hola <span id="lblInvitado"></span>!</h1>
-                    <p style="font-size: 15px; margin: 10px 0;">Tu registro ha sido procesado con éxito para nuestro próximo evento.</p>
+                    <h1 class="msg-titulo" style="font-size: 20px;">¡Registro Confirmado!</h1>
+                    <p style="font-size: 14px; margin: 5px 0; color: #fff;" id="lblInvitado"></p>
                     <div class="qr-box"><img id="qrImage" src="" alt="Código QR"></div>
-                    <p style="font-size: 11px; color: #666; margin: 0;">Tu pase personal de acceso (QR)</p>
+                    <p style="font-size: 11px; color: #a3928a; margin: 0;">Tu pase personal de acceso (QR)</p>
                     <div class="info-recuadro">
-                        <p style="color: #EC6835; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">La Positiva Seguros</p>
-                        <p style="font-weight: bold;"><b>Congreso Internacional de Prevención de Riesgos Laborales</b></p>
-                        <p style="color: #555;">19 de agosto del 2026 | Hotel Marriot</p>
+                        <p style="color: #fca05f; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; font-size: 11px; margin-bottom: 5px;">Congreso Internacional</p>
+                        <p style="font-weight: bold; color: #fff; margin-bottom: 5px;">Transformando la SST en motor de productividad</p>
+                        <p style="font-size: 12px;"><b>Co-organizado con:</b> ORP Fundación Internacional</p>
+                        <p style="font-size: 12px;"><b>Iniciativa:</b> VISION ZERO</p>
                     </div>
-                    <p class="instruccion-final">Por favor, presente este código QR digital o impreso al ingresar.</p>
+                    <p class="instruccion-final">Presente este código QR desde su celular al ingresar.</p>
                 </div>
                 <button type="button" id="btnDescargar" class="btn-download">Descargar Código QR</button>
             </div>
 
             <div id="vistaNoAsistira" style="display: none;">
-                <div class="preview-correo" style="border-color: #dcd0ca;">
-                    <h1 class="msg-titulo" style="color: #666;">Registro Recibido</h1>
-                    <p style="font-size: 15px;">Agradecemos tu respuesta. Hemos tomado nota de que no podrás acompañarnos en esta oportunidad.</p>
+                <div class="preview-correo" style="border-color: rgba(252, 160, 95, 0.25);">
+                    <h1 class="msg-titulo" style="color: #a3928a; font-size: 20px;">Registro Recibido</h1>
+                    <p style="font-size: 14px; color: #dcd6d3;">Agradecemos tu respuesta. Hemos tomado nota de que no podrás acompañarnos en esta oportunidad.</p>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbxXWgiLbge788VjtrnX9Qtv6aZYmtjdBgN4xKGSUCqtbqjtmeCsnoXSN83BcLwPOgY0/exec'; // <--- COLOCA TU ENLACE /exec AQUÍ
+        const scriptURL = 'https://script.google.com/macros/s/AKfycby7cwFjkSikrHlUwwR1bVao67-O-IONaNeP_p6229TrMIauy2io6DHb35c2hVIfIAg-/exec'; 
         const form = document.getElementById('corporateForm');
 
-        // --- Sistema de Puntos Flotantes Dinámicos ---
         function createParticles() {
             const container = document.getElementById('particles-container');
-            const particleCount = 20; // Cantidad moderada para elegancia corporativa
-            
+            const particleCount = 20; 
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
                 particle.classList.add('particle');
-                
-                // Tamaños muy pequeños e irregulares
-                const size = Math.random() * 4 + 2; // entre 2px y 6px
+                const size = Math.random() * 3 + 1.5; 
                 particle.style.width = `${size}px`;
                 particle.style.height = `${size}px`;
-                
-                // Posiciones y retrasos iniciales aleatorios
                 particle.style.left = `${Math.random() * 100}%`;
                 particle.style.top = `${Math.random() * 100}%`;
                 particle.style.animationDelay = `${Math.random() * 4}s`;
-                
                 container.appendChild(particle);
             }
         }
         createParticles();
 
-        // --- Procesamiento del Formulario ---
         form.addEventListener('submit', e => {
             e.preventDefault();
             const btn = document.getElementById('btnEnviar');
