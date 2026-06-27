@@ -12,7 +12,6 @@
             100% { opacity: 1; transform: scale(1) translateY(0); }
         }
 
-        /* FONDO ANTERIOR RESTAURADO PARA TODA LA PÁGINA */
         body { 
             font-family: 'Raleway', sans-serif; 
             display: flex; 
@@ -39,16 +38,18 @@
             pointer-events: none;
         }
 
-        /* CAJA DEL FORMULARIO CON 'formulario.jpg' MÁS VISIBLE */
+        /* CAJA DEL FORMULARIO CON ESPACIADO SUPERIOR PARA VISUALIZAR LOGOS */
         .card { 
-            /* Se redujo el oscurecimiento (ahora a 0.85) para que la imagen se note mucho más nítida */
             background: linear-gradient(rgba(14, 8, 5, 0.85), rgba(14, 8, 5, 0.85)), url('formulario.jpg');
             background-size: cover;
             background-position: center top;
             background-repeat: no-repeat;
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
-            padding: 35px 25px; 
+            
+            /* NUEVO: Deja libre la franja de arriba para que se lean "Vision Zero" y "La Positiva Seguros" */
+            padding: 140px 25px 35px 25px; 
+            
             border-radius: 16px; 
             box-shadow: 0 25px 60px rgba(0, 0, 0, 0.90); 
             max-width: 440px; 
@@ -59,8 +60,9 @@
             box-sizing: border-box;
         }
 
+        /* Bloque de títulos intermedio */
         .header-congreso {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
         
         .header-congreso h1 {
@@ -84,19 +86,19 @@
             letter-spacing: 0.5px;
         }
 
-        /* CONTENEDOR INTERNO PARA BAJAR LOS CAMPOS A LA ALTURA DE LA 'X' */
+        /* CONTENEDOR DE CAMPOS AJUSTADO PARA QUEDAR A LA ALTURA DE LA 'X' */
         .form-fields-container {
-            padding-top: 155px; /* Empuja los inputs hacia abajo coincidiendo perfectamente sobre la estructura de la X */
+            /* Se redujo un poco para compensar el nuevo espacio superior del contenedor padre */
+            padding-top: 45px; 
         }
         
-        /* Inputs y Selects */
         input, select { 
             width: 100%; 
             padding: 13px; 
             margin: 8px 0; 
             border: 1px solid rgba(252, 160, 95, 0.40); 
             box-sizing: border-box; 
-            background: rgba(15, 8, 4, 0.90); /* Mayor solidez interna para facilitar la lectura sobre el fondo nítido */
+            background: rgba(15, 8, 4, 0.90); 
             color: #ffffff; 
             font-family: inherit; 
             font-size: 14px;
@@ -150,6 +152,7 @@
 <body>
 
     <div class="card">
+        <!-- El encabezado ahora inicia más abajo, respetando la cabecera limpia de la imagen -->
         <div class="header-congreso">
             <h1>Congreso Internacional de Prevención de Riesgos Laborales</h1>
             <div class="info-detalles">
@@ -158,7 +161,6 @@
         </div>
         
         <form id="corporateForm">
-            <!-- Los campos ahora se albergan dentro de este contenedor espaciado para alinearse a la X -->
             <div class="form-fields-container">
                 <input type="text" name="nombreCompleto" placeholder="Nombres y Apellidos" required 
                        pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$" title="Ingrese únicamente letras y espacios.">
@@ -175,7 +177,7 @@
                        pattern="^[0-9]{9}$" title="El celular debe contener exactamente 9 números enteros.">
                 
                 <select name="asistencia" id="asistenciaSelect" required>
-                    <option value="" disabled selected>¿Confirmas tu asistencia?</option>
+                    <option value="" disabled center selected>¿Confirmas tu asistencia?</option>
                     <option value="Sí">Sí, asistiré</option>
                     <option value="No de momento">No podré asistir</option>
                 </select>
