@@ -25,7 +25,7 @@
             box-sizing: border-box;
         }
 
-        /* Capa de fondo optimizada para móviles (reemplaza background-attachment fixed) */
+        /* Capa de fondo 100% compatible con celulares modernos y computadoras */
         body::after {
             content: "";
             position: fixed;
@@ -34,7 +34,7 @@
             background-size: cover;
             background-position: center center;
             background-repeat: no-repeat;
-            opacity: 0.25; /* Controla la opacidad para que sea muy tenue y no opaque el formulario */
+            opacity: 0.22; /* Imagen tenue de fondo que no tapa las letras del formulario */
             z-index: -1;
             pointer-events: none;
         }
@@ -164,7 +164,7 @@
         
         <div class="info-detalles">
             <b>VISION ZERO</b><br>
-            [FECHA DEL EVENTO] | [LUGAR DEL EVENTO]
+            19 de Agosto del 2026 | Hotel Marriott
         </div>
         <br>
         
@@ -202,6 +202,8 @@
                     <div class="info-recuadro">
                         <p style="color: #fca05f; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; font-size: 10px; margin-bottom: 5px;">Congreso Internacional</p>
                         <p style="font-weight: bold; color: #fff; margin-bottom: 5px; font-size: 13px;">Transformando la SST en motor de productividad</p>
+                        <p><b>Fecha:</b> 19 de Agosto del 2026</p>
+                        <p><b>Lugar:</b> Hotel Marriott</p>
                         <p><b>Co-organizado con:</b> ORP Fundación Internacional</p>
                         <p><b>Iniciativa:</b> VISION ZERO</p>
                     </div>
@@ -220,7 +222,8 @@
     </div>
 
     <script>
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbxFLKSsvBetxAjerjKC8DI-vhT7lUfnJ2WMqvOhG5nZAB2KIW0NNc7CoSVSVyHnbNOR/exec'; 
+        // RECUERDA COLOCAR TU NUEVA URL DE EJECUCIÓN (PRODUCIDA AL VOLVER A IMPLEMENTAR EL GOOGLE SCRIPT) AQUÍ:
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbygonuC6nUt_1A8rWQKf9-oWEoa9JFdVLmPVtYfO6GjpKiZXrSMqI_Nl5V8BmXN6q8O/exec'; 
         const form = document.getElementById('corporateForm');
 
         form.addEventListener('submit', e => {
@@ -234,7 +237,6 @@
             const celular = form.celular.value;
             const asistencia = document.getElementById('asistenciaSelect').value;
 
-            // QR modificado: Estructurado estrictamente con DNI y Celular
             const qrData = "DNI: " + dni + " | CELULAR: " + celular;
             const qrUrl = "https://quickchart.io/qr?text=" + encodeURIComponent(qrData);
 
@@ -243,7 +245,7 @@
                 .then(res => {
                     if (res.result === "duplicate") {
                         alert("⚠️ " + res.message);
-                        btn.innerText = "ENVIAR CONFIRMACIÓN";
+                        btn.innerText = "Enviar Confirmación";
                         btn.disabled = false;
                     } else if (res.result === "success") {
                         form.style.display = 'none';
@@ -274,8 +276,8 @@
                     }
                 })
                 .catch(error => {
-                    alert('Error de conexión. Por favor, intente de nuevo.');
-                    btn.innerText = "ENVIAR CONFIRMACIÓN";
+                    alert('Error de conexión o configuración del servidor. Por favor, revisa la URL de Apps Script.');
+                    btn.innerText = "Enviar Confirmación";
                     btn.disabled = false;
                 });
         });
