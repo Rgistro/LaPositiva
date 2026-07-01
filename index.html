@@ -19,7 +19,7 @@
             align-items: center; 
             min-height: 100vh; 
             margin: 0; 
-            padding: 38px; 
+            padding: 25px; /* Reducido ligeramente para dar más aire verticalmente */
             position: relative;
             background-color: #060302; 
             box-sizing: border-box;
@@ -30,7 +30,7 @@
         body::after {
             content: "";
             position: fixed;
-            top: 38px; left: 38px; right: 38px; bottom: 38px;
+            top: 25px; left: 25px; right: 25px; bottom: 25px;
             background-image: url('logofondo.jpg');
             background-size: cover;
             background-position: center center;
@@ -42,7 +42,7 @@
             border-radius: 8px;
         }
 
-        /* CAJA DEL FORMULARIO: SE AGRANDÓ HACIA ABAJO AUMENTANDO EL PADDING */
+        /* CAJA DEL FORMULARIO: ALTO REDUCIDO SUTILMENTE ABAJO PARA MOSTRAR LOS LOGOS ORP */
         .card { 
             background: linear-gradient(rgba(14, 8, 5, 0.35), rgba(14, 8, 5, 0.35)), url('formulario.jpg');
             background-size: cover;
@@ -51,19 +51,19 @@
             backdrop-filter: blur(4px);
             -webkit-backdrop-filter: blur(4px);
             
-            /* Se aumentó el padding superior e inferior para estirar la caja hacia abajo */
-            padding: 120px 25px 45px 25px; 
+            /* Ajustado a 110px arriba y reducido a 25px abajo para encoger la caja */
+            padding: 110px 25px 25px 25px; 
             
             border-radius: 16px; 
             box-shadow: 0 25px 60px rgba(0, 0, 0, 0.95); 
-            max-width: 420px; 
+            max-width: 410px; /* Compactado 10px a los lados también para estilizar */
             width: 100%; 
             text-align: center; 
             border: 1px solid rgba(252, 160, 95, 0.45); 
             animation: subtleScaleIn 0.9s cubic-bezier(0.16, 1, 0.3, 1);
             box-sizing: border-box;
 
-            /* Posición centrada estratégica para no tapar la X */
+            /* Posición equilibrada */
             margin-left: 18%;
             margin-right: auto;
         }
@@ -71,55 +71,52 @@
         @media (max-width: 950px) {
             body { padding: 15px; }
             body::after { top: 15px; left: 15px; right: 15px; bottom: 15px; }
-            .card { margin: 0 auto; padding-top: 90px; }
+            .card { margin: 0 auto; padding-top: 85px; }
         }
 
-        /* CONTENEDOR DE TEXTOS CON MARGEN PARA SEPARARSE DE LOGOS DE FORMULARIO.JPG */
+        /* CABECERA OPTIMIZADA EN ESPACIOS */
         .header-congreso {
-            margin-top: 55px; /* Empuja el texto hacia abajo liberando espacio arriba */
-            margin-bottom: 20px;
+            margin-top: 45px; /* Altura ideal calculada para separar de Vision Zero y La Positiva */
+            margin-bottom: 15px; /* Reducido para acortar la caja */
         }
         
-        /* Fila 1: Estilo idéntico al fondo logofondo.jpg */
         .lema-fila1 {
-            font-size: 15px;
-            color: #fca05f; /* Color naranja corporativo */
+            font-size: 14px; /* Un punto más pequeño para ahorrar espacio vertical */
+            color: #fca05f; 
             font-weight: 700;
-            text-transform: uppercase; /* Mayúsculas */
+            text-transform: uppercase; 
             letter-spacing: 1px;
             margin: 0 0 2px 0;
             text-shadow: 0 2px 4px rgba(0,0,0,0.9);
         }
 
-        /* Fila 2: Estilo idéntico al fondo logofondo.jpg */
         .lema-fila2 {
-            font-size: 13px;
+            font-size: 12.5px;
             color: #ffffff;
-            font-style: italic; /* Cursiva elegante */
+            font-style: italic; 
             font-weight: 400;
-            margin: 0 0 14px 0;
+            margin: 0 0 10px 0;
             line-height: 1.3;
             text-shadow: 0 2px 4px rgba(0,0,0,0.9);
         }
 
-        /* TÍTULO DEL CONGRESO (AHORA VA DESPUÉS DE LA FRASE) */
         .header-congreso h1 {
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             color: #e3dad5; 
-            font-size: 16px; 
+            font-size: 15px; 
             font-weight: 700;
             letter-spacing: 0.5px;
             line-height: 1.3;
-            margin: 0 0 12px 0;
-            padding-top: 10px;
-            border-top: 1px solid rgba(255, 255, 255, 0.20); /* Separador sutil superior */
+            margin: 0 0 10px 0;
+            padding-top: 8px;
+            border-top: 1px solid rgba(255, 255, 255, 0.20); 
             text-shadow: 0 2px 5px rgba(0,0,0,0.9);
         }
         
         .info-detalles { 
-            font-size: 0.88em; 
+            font-size: 0.85em; 
             color: #fca05f; 
-            margin-top: 5px;
+            margin-top: 4px;
             line-height: 1.4;
             font-weight: 600;
             letter-spacing: 0.5px;
@@ -127,13 +124,13 @@
         }
 
         .form-fields-container {
-            padding-top: 5px; 
+            padding-top: 2px; 
         }
         
         input, select { 
             width: 100%; 
-            padding: 11px 13px; 
-            margin: 5px 0; 
+            padding: 10px 12px; /* Reducido 1px de relleno interno para ganar altura */
+            margin: 4px 0; /* Compactado margen entre inputs */
             border: 1px solid rgba(252, 160, 95, 0.50); 
             box-sizing: border-box; 
             background: rgba(10, 5, 3, 0.95); 
@@ -161,30 +158,30 @@
         }
         
         button, .btn-download { 
-            width: 100%; padding: 13px; background: #e0843a; color: white; border: none; border-radius: 6px;
-            cursor: pointer; letter-spacing: 1.5px; text-transform: uppercase; transition: background 0.3s, transform 0.2s; font-size: 12px; font-weight: 700; margin-top: 10px; display: block; text-decoration: none; box-sizing: border-box;
+            width: 100%; padding: 12px; background: #e0843a; color: white; border: none; border-radius: 6px;
+            cursor: pointer; letter-spacing: 1.5px; text-transform: uppercase; transition: background 0.3s, transform 0.2s; font-size: 12px; font-weight: 700; margin-top: 8px; display: block; text-decoration: none; box-sizing: border-box;
         }
         button:hover, .btn-download:hover { background: #fca05f; box-shadow: 0 0 15px rgba(252, 160, 95, 0.45); }
         button:active { transform: scale(0.99); }
         
-        #contenedor-exito { display: none; margin-top: 15px; animation: subtleScaleIn 0.5s ease-out; }
+        #contenedor-exito { display: none; margin-top: 12px; animation: subtleScaleIn 0.5s ease-out; }
         
         .preview-correo { 
             font-family: Arial, sans-serif; 
             color: #ffffff; 
             background-color: #120905; 
-            padding: 18px; 
+            padding: 15px; 
             border: 2px solid #e0843a; 
             text-align: center; 
             border-radius: 8px; 
-            margin-top: 15px; 
+            margin-top: 12px; 
         }
-        .msg-titulo { color: #fca05f; font-size: 19px; font-weight: 700; margin-bottom: 8px; }
-        .qr-box { margin: 12px auto; padding: 8px; background: white; border: 1px solid #dcd0ca; display: inline-block; border-radius: 4px; }
-        .qr-box img { display: block; max-width: 150px; height: auto; }
-        .info-recuadro { background-color: #1c100a; border: 1px solid rgba(252, 160, 95, 0.25); padding: 10px; border-radius: 4px; margin: 12px 0; text-align: left; }
-        .info-recuadro p { margin: 4px 0; font-size: 11px; color: #e1d5cf; }
-        .instruccion-final { font-size: 11px; color: #fca05f; font-weight: bold; margin-top: 12px; letter-spacing: 0.5px; }
+        .msg-titulo { color: #fca05f; font-size: 18px; font-weight: 700; margin-bottom: 6px; }
+        .qr-box { margin: 10px auto; padding: 6px; background: white; border: 1px solid #dcd0ca; display: inline-block; border-radius: 4px; }
+        .qr-box img { display: block; max-width: 140px; height: auto; }
+        .info-recuadro { background-color: #1c100a; border: 1px solid rgba(252, 160, 95, 0.25); padding: 8px; border-radius: 4px; margin: 10px 0; text-align: left; }
+        .info-recuadro p { margin: 3px 0; font-size: 11px; color: #e1d5cf; }
+        .instruccion-final { font-size: 11px; color: #fca05f; font-weight: bold; margin-top: 10px; letter-spacing: 0.5px; }
     </style>
 </head>
 <body>
@@ -256,7 +253,7 @@
     </div>
 
     <script>
-        const scriptURL = 'TU_URL_DE_APPS_SCRIPT_AQUI'; 
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbwFza0tR5UebFwAfbia1nquEG-rcWIRZEru9wmRFvIiqkpw-cR_HvAQKDs4N1z8Gqvb/exec'; 
         const form = document.getElementById('corporateForm');
 
         form.addEventListener('submit', e => {
