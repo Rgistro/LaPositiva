@@ -8,11 +8,11 @@
         @import url('https://fonts.googleapis.com/css2?family=Helvetica+Neue:wght@300;400;700&family=Raleway:wght@300;400;600&display=swap');
         
         @keyframes subtleScaleIn {
-            0 { opacity: 0; transform: scale(0.96) translateY(15px); }
+            0% { opacity: 0; transform: scale(0.96) translateY(15px); }
             100% { opacity: 1; transform: scale(1) translateY(0); }
         }
 
-        /* CONFIGURACIÓN GLOBAL CON MARGEN DE 1CM (aprox. 38px) */
+        /* CONFIGURACIÓN GLOBAL CON MARGEN DE 1CM */
         body { 
             font-family: 'Raleway', sans-serif; 
             display: flex; 
@@ -20,41 +20,40 @@
             align-items: center; 
             min-height: 100vh; 
             margin: 0; 
-            padding: 38px; /* Margen perimetral simulando 1 cm en los 4 lados */
+            padding: 38px; 
             position: relative;
             background-color: #060302; 
             box-sizing: border-box;
             overflow-x: hidden;
         }
 
-        /* FONDO GENERAL MÁS RESALTADO (logofondo.jpg) */
+        /* FONDO GENERAL RESALTADO (logofondo.jpg) */
         body::after {
             content: "";
             position: fixed;
-            /* El fondo respeta el margen de 1cm de los bordes */
             top: 38px; left: 38px; right: 38px; bottom: 38px;
             background-image: url('logofondo.jpg');
             background-size: cover;
             background-position: center center;
             background-repeat: no-repeat;
-            opacity: 0.55; /* Se aumentó la opacidad para que resalte mucho más */
-            filter: contrast(1.1); /* Realza los detalles y colores del fondo */
+            opacity: 0.55; 
+            filter: contrast(1.1); 
             z-index: -1;
             pointer-events: none;
             border-radius: 8px;
         }
 
-        /* CAJA DEL FORMULARIO DESPLAZADA DEL MEDIO Y CON FONDO MÁS NÍTIDO */
+        /* CAJA DEL FORMULARIO EN EL LADO IZQUIERDO Y CON IMAGEN INTERNA MÁS BLANCA */
         .card { 
-            /* Capa de degradado más clara (0.75) para que resalten al máximo los logos internos */
-            background: linear-gradient(rgba(14, 8, 5, 0.75), rgba(14, 8, 5, 0.75)), url('formulario.jpg');
+            /* Se redujo la opacidad de la capa negra (0.45) para que las letras de formulario.jpg brillen más blancas */
+            background: linear-gradient(rgba(14, 8, 5, 0.45), rgba(14, 8, 5, 0.45)), url('formulario.jpg');
             background-size: cover;
             background-position: center top;
             background-repeat: no-repeat;
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
+            backdrop-filter: blur(3px);
+            -webkit-backdrop-filter: blur(3px);
             
-            /* Deja libre la franja superior para ver Vision Zero y La Positiva Seguros */
+            /* Espacio superior para despejar los logotipos superiores */
             padding: 150px 25px 35px 25px; 
             
             border-radius: 16px; 
@@ -62,23 +61,23 @@
             max-width: 440px; 
             width: 100%; 
             text-align: center; 
-            border: 1px solid rgba(252, 160, 95, 0.35); 
+            border: 1px solid rgba(252, 160, 95, 0.45); 
             animation: subtleScaleIn 0.9s cubic-bezier(0.16, 1, 0.3, 1);
             box-sizing: border-box;
 
-            /* SEPARAR DEL MEDIO: En pantallas grandes, mueve la caja a la derecha para no tapar el fondo */
-            margin-left: auto;
-            margin-right: 5%;
+            /* COLOCAR A LA IZQUIERDA: Empuja el espacio a la derecha para no tapar la X del fondo */
+            margin-right: auto;
+            margin-left: 5%;
         }
 
-        /* Si la pantalla es pequeña (celulares), se centra de forma estándar automáticamente */
+        /* Ajuste automático para dispositivos móviles */
         @media (max-width: 900px) {
             body { padding: 15px; }
             body::after { top: 15px; left: 15px; right: 15px; bottom: 15px; }
             .card { margin: 0 auto; padding-top: 135px; }
         }
 
-        /* Bloque de títulos intermedio */
+        /* Bloque de títulos */
         .header-congreso {
             margin-bottom: 20px;
         }
@@ -90,10 +89,20 @@
             font-weight: 700;
             letter-spacing: 0.5px;
             line-height: 1.4;
-            margin: 0 0 10px 0;
+            margin: 0 0 6px 0;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.9);
+        }
+
+        .header-subtitulo {
+            font-size: 14px;
+            color: #ffffff;
+            font-style: italic;
+            font-weight: 400;
+            margin: 0 0 12px 0;
+            line-height: 1.3;
             padding-bottom: 12px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.25);
-            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.30);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.9);
         }
         
         .info-detalles { 
@@ -103,12 +112,12 @@
             line-height: 1.5;
             font-weight: 600;
             letter-spacing: 0.5px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.9);
         }
 
-        /* CONTENEDOR DE CAMPOS ALINEADO A LA X */
+        /* Contenedor de campos */
         .form-fields-container {
-            padding-top: 40px; 
+            padding-top: 25px; 
         }
         
         input, select { 
@@ -117,7 +126,7 @@
             margin: 8px 0; 
             border: 1px solid rgba(252, 160, 95, 0.50); 
             box-sizing: border-box; 
-            background: rgba(10, 5, 3, 0.95); /* Fondo de input más opaco para garantizar lectura sobre la imagen nítida */
+            background: rgba(10, 5, 3, 0.95); 
             color: #ffffff; 
             font-family: inherit; 
             font-size: 14px;
@@ -173,6 +182,7 @@
     <div class="card">
         <div class="header-congreso">
             <h1>Congreso Internacional de Prevención de Riesgos Laborales</h1>
+            <div class="header-subtitulo">Liderar en Zero: Transformando la SST en motor de Productividad</div>
             <div class="info-detalles">
                 19 de Agosto del 2026 | Hotel Marriott
             </div>
