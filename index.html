@@ -51,7 +51,6 @@
             backdrop-filter: blur(4px);
             -webkit-backdrop-filter: blur(4px);
             
-            /* Alto reducido en la base (15px) para no tapar los logos inferiores */
             padding: 110px 25px 15px 25px; 
             
             border-radius: 16px; 
@@ -164,12 +163,11 @@
         
         #contenedor-exito { display: none; margin-top: 10px; animation: subtleScaleIn 0.5s ease-out; }
         
-        /* CAJA QR ULTRA COMPACTA */
         .preview-correo { 
             font-family: Arial, sans-serif; 
             color: #ffffff; 
             background-color: #120905; 
-            padding: 12px; /* Reducido al mínimo */
+            padding: 12px; 
             border: 2px solid #e0843a; 
             text-align: center; 
             border-radius: 8px; 
@@ -186,7 +184,7 @@
 <body>
 
     <div class="card">
-        <!-- CABECERA PRINCIPAL (Se oculta dinámicamente mediante JS para liberar espacio al confirmar) -->
+        <!-- CABECERA PRINCIPAL -->
         <div class="header-congreso" id="cabeceraFormulario">
             <div class="lema-fila1">Liderar en Zero:</div>
             <div class="lema-fila2">Transformando la SST en motor de Productividad</div>
@@ -222,14 +220,14 @@
             </div>
         </form>
 
-        <!-- CAJA DE ÉXITO OPTIMIZADA: TEXTOS REPETITIVOS REMOVIDOS -->
+        <!-- CAJA DE ÉXITO -->
         <div id="contenedor-exito">
             <div id="vistaAsistira" style="display: none;">
                 <div class="preview-correo">
                     <h1 class="msg-titulo">¡Registro Confirmado!</h1>
                     <p style="font-size: 13px; margin: 3px 0; color: #fff; font-weight: bold;" id="lblInvitado"></p>
                     
-                    <div class="qr-box"><img id="qrImage" src="" alt="Código QR"></div>
+                    <div class="qr-box"><img id="qrImage" src="" alt="Código QR" crossorigin="anonymous"></div>
                     <p style="font-size: 11px; color: #a3928a; margin: 0;">Tu pase personal de acceso (QR)</p>
                     
                     <div class="info-recuadro">
@@ -238,7 +236,7 @@
                     </div>
                     <p class="instruccion-final">Presente este código QR desde su celular al ingresar.</p>
                 </div>
-                <button type="button" id="btnDescargar" class="btn-download">Descargar Código QR</button>
+                <button type="button" id="btnDescargar" class="btn-download">Descargar Tarjeta de Acceso</button>
             </div>
 
             <div id="vistaNoAsistira" style="display: none;">
@@ -266,7 +264,8 @@
             const asistencia = document.getElementById('asistenciaSelect').value;
 
             const qrData = "DNI: " + dni + " | CELULAR: " + celular;
-            const qrUrl = "https://quickchart.io/qr?text=" + encodeURIComponent(qrData);
+            // Se añade el parámetro de formato para asegurar compatibilidad de dibujo en canvas
+            const qrUrl = "https://quickchart.io/qr?text=" + encodeURIComponent(qrData) + "&format=png";
 
             fetch(scriptURL, { method: 'POST', body: new FormData(form)})
                 .then(response => response.json())
@@ -276,10 +275,8 @@
                         btn.innerText = "Enviar Confirmación";
                         btn.disabled = false;
                     } else if (res.result === "success") {
-                        // OCULTAMOS FORMULARIO Y LA CABECERA PARA GANAR ESPACIO VERTICAL MAXIMO
                         form.style.display = 'none';
                         document.getElementById('cabeceraFormulario').style.display = 'none';
-                        
                         document.getElementById('contenedor-exito').style.display = 'block';
 
                         if (asistencia === "Sí") {
@@ -287,19 +284,63 @@
                             document.getElementById('qrImage').src = qrUrl;
                             document.getElementById('vistaAsistira').style.display = 'block';
                             
+                            // PROCESO DE GENERACIÓN DE IMAGEN COMPUESTA (Canvas)
                             document.getElementById('btnDescargar').addEventListener('click', () => {
-                                fetch(qrUrl)
-                                    .then(r => r.blob())
-                                    .then(blob => {
-                                        const urlBlob = window.URL.createObjectURL(blob);
-                                        const a = document.createElement('a');
-                                        a.style.display = 'none';
-                                        a.href = urlBlob;
-                                        a.download = 'Acreditacion_QR_' + dni + '.png';
-                                        document.body.appendChild(a);
-                                        a.click();
-                                        window.URL.revokeObjectURL(urlBlob);
-                                    });
+                                const imgQR = new Image();
+                                imgQR.crossOrigin = "anonymous"; // Evita problemas de seguridad al procesar la URL externa
+                                imgQR.src = qrUrl;
+
+                                imgQR.onload = function() {
+                                    // Crear el lienzo virtual para armar la tarjeta
+                                    const canvas = document.createElement('canvas');
+                                    const ctx = canvas.getContext('2d');
+                                    
+                                    // Dimensiones de la tarjeta descargable (Estilo credencial)
+                                    canvas.width = 400;
+                                    canvas.height = 360;
+
+                                    // 1. Fondo Oscuro Corporativo
+                                    ctx.fillStyle = "#120905";
+                                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                                    // 2. Borde decorativo naranja
+                                    ctx.strokeStyle = "#e0843a";
+                                    ctx.lineWidth = 5;
+                                    ctx.strokeRect(10, 10, canvas.width - 20, canvas.height - 20);
+
+                                    // 3. Texto: ¡Registro Confirmado!
+                                    ctx.fillStyle = "#fca05f";
+                                    ctx.font = "bold 20px Arial";
+                                    ctx.textAlign = "center";
+                                    ctx.fillText("¡Registro Confirmado!", canvas.width / 2, 45);
+
+                                    // 4. Texto: Nombre del Invitado
+                                    ctx.fillStyle = "#ffffff";
+                                    ctx.font = "15px Arial";
+                                    ctx.fillText(nombreCompleto, canvas.width / 2, 75);
+
+                                    // 5. Dibujar fondo blanco sutil para el QR
+                                    ctx.fillStyle = "#ffffff";
+                                    ctx.fillRect((canvas.width / 2) - 80, 105, 160, 160);
+
+                                    // 6. Incrustar el Código QR
+                                    ctx.drawImage(imgQR, (canvas.width / 2) - 75, 110, 150, 150);
+
+                                    // 7. Pie de tarjeta descriptivo
+                                    ctx.fillStyle = "#a3928a";
+                                    ctx.font = "italic 11px Arial";
+                                    ctx.fillText("Pase Personal de Acreditación", canvas.width / 2, 295);
+                                    
+                                    ctx.fillStyle = "#fca05f";
+                                    ctx.font = "bold 11px Arial";
+                                    ctx.fillText("Presente este pase impreso o digital al ingresar", canvas.width / 2, 320);
+
+                                    // 8. Ejecutar la descarga automática del archivo compuesto
+                                    const link = document.createElement('a');
+                                    link.download = 'Pase_Acceso_' + dni + '.png';
+                                    link.href = canvas.toDataURL('image/png');
+                                    link.click();
+                                };
                             });
                         } else {
                             document.getElementById('vistaNoAsistira').style.display = 'block';
