@@ -19,7 +19,7 @@
             align-items: center; 
             min-height: 100vh; 
             margin: 0; 
-            padding: 25px; /* Reducido ligeramente para dar más aire verticalmente */
+            padding: 25px; 
             position: relative;
             background-color: #060302; 
             box-sizing: border-box;
@@ -42,7 +42,7 @@
             border-radius: 8px;
         }
 
-        /* CAJA DEL FORMULARIO: ALTO REDUCIDO SUTILMENTE ABAJO PARA MOSTRAR LOS LOGOS ORP */
+        /* CAJA DEL FORMULARIO COMPACTADA */
         .card { 
             background: linear-gradient(rgba(14, 8, 5, 0.35), rgba(14, 8, 5, 0.35)), url('formulario.jpg');
             background-size: cover;
@@ -51,19 +51,18 @@
             backdrop-filter: blur(4px);
             -webkit-backdrop-filter: blur(4px);
             
-            /* Ajustado a 110px arriba y reducido a 25px abajo para encoger la caja */
-            padding: 110px 25px 25px 25px; 
+            /* Alto reducido en la base (15px) para no tapar los logos inferiores */
+            padding: 110px 25px 15px 25px; 
             
             border-radius: 16px; 
             box-shadow: 0 25px 60px rgba(0, 0, 0, 0.95); 
-            max-width: 410px; /* Compactado 10px a los lados también para estilizar */
+            max-width: 410px; 
             width: 100%; 
             text-align: center; 
             border: 1px solid rgba(252, 160, 95, 0.45); 
             animation: subtleScaleIn 0.9s cubic-bezier(0.16, 1, 0.3, 1);
             box-sizing: border-box;
 
-            /* Posición equilibrada */
             margin-left: 18%;
             margin-right: auto;
         }
@@ -74,14 +73,13 @@
             .card { margin: 0 auto; padding-top: 85px; }
         }
 
-        /* CABECERA OPTIMIZADA EN ESPACIOS */
         .header-congreso {
-            margin-top: 45px; /* Altura ideal calculada para separar de Vision Zero y La Positiva */
-            margin-bottom: 15px; /* Reducido para acortar la caja */
+            margin-top: 45px; 
+            margin-bottom: 15px; 
         }
         
         .lema-fila1 {
-            font-size: 14px; /* Un punto más pequeño para ahorrar espacio vertical */
+            font-size: 14px; 
             color: #fca05f; 
             font-weight: 700;
             text-transform: uppercase; 
@@ -129,8 +127,8 @@
         
         input, select { 
             width: 100%; 
-            padding: 10px 12px; /* Reducido 1px de relleno interno para ganar altura */
-            margin: 4px 0; /* Compactado margen entre inputs */
+            padding: 10px 12px; 
+            margin: 4px 0; 
             border: 1px solid rgba(252, 160, 95, 0.50); 
             box-sizing: border-box; 
             background: rgba(10, 5, 3, 0.95); 
@@ -164,35 +162,35 @@
         button:hover, .btn-download:hover { background: #fca05f; box-shadow: 0 0 15px rgba(252, 160, 95, 0.45); }
         button:active { transform: scale(0.99); }
         
-        #contenedor-exito { display: none; margin-top: 12px; animation: subtleScaleIn 0.5s ease-out; }
+        #contenedor-exito { display: none; margin-top: 10px; animation: subtleScaleIn 0.5s ease-out; }
         
+        /* CAJA QR ULTRA COMPACTA */
         .preview-correo { 
             font-family: Arial, sans-serif; 
             color: #ffffff; 
             background-color: #120905; 
-            padding: 15px; 
+            padding: 12px; /* Reducido al mínimo */
             border: 2px solid #e0843a; 
             text-align: center; 
             border-radius: 8px; 
-            margin-top: 12px; 
+            margin-top: 5px; 
         }
-        .msg-titulo { color: #fca05f; font-size: 18px; font-weight: 700; margin-bottom: 6px; }
-        .qr-box { margin: 10px auto; padding: 6px; background: white; border: 1px solid #dcd0ca; display: inline-block; border-radius: 4px; }
-        .qr-box img { display: block; max-width: 140px; height: auto; }
-        .info-recuadro { background-color: #1c100a; border: 1px solid rgba(252, 160, 95, 0.25); padding: 8px; border-radius: 4px; margin: 10px 0; text-align: left; }
+        .msg-titulo { color: #fca05f; font-size: 17px; font-weight: 700; margin-bottom: 4px; }
+        .qr-box { margin: 8px auto; padding: 6px; background: white; border: 1px solid #dcd0ca; display: inline-block; border-radius: 4px; }
+        .qr-box img { display: block; max-width: 135px; height: auto; }
+        .info-recuadro { background-color: #1c100a; border: 1px solid rgba(252, 160, 95, 0.25); padding: 8px; border-radius: 4px; margin: 8px 0; text-align: left; }
         .info-recuadro p { margin: 3px 0; font-size: 11px; color: #e1d5cf; }
-        .instruccion-final { font-size: 11px; color: #fca05f; font-weight: bold; margin-top: 10px; letter-spacing: 0.5px; }
+        .instruccion-final { font-size: 11px; color: #fca05f; font-weight: bold; margin-top: 8px; letter-spacing: 0.5px; }
     </style>
 </head>
 <body>
 
     <div class="card">
-        <div class="header-congreso">
+        <!-- CABECERA PRINCIPAL (Se oculta dinámicamente mediante JS para liberar espacio al confirmar) -->
+        <div class="header-congreso" id="cabeceraFormulario">
             <div class="lema-fila1">Liderar en Zero:</div>
             <div class="lema-fila2">Transformando la SST en motor de Productividad</div>
-            
             <h1>Congreso Internacional de Prevención de Riesgos Laborales</h1>
-            
             <div class="info-detalles">
                 Hotel Marriott | 19 de Agosto del 2026 | 9:00 AM
             </div>
@@ -224,19 +222,19 @@
             </div>
         </form>
 
+        <!-- CAJA DE ÉXITO OPTIMIZADA: TEXTOS REPETITIVOS REMOVIDOS -->
         <div id="contenedor-exito">
             <div id="vistaAsistira" style="display: none;">
                 <div class="preview-correo">
                     <h1 class="msg-titulo">¡Registro Confirmado!</h1>
-                    <p style="font-size: 13px; margin: 5px 0; color: #fff;" id="lblInvitado"></p>
+                    <p style="font-size: 13px; margin: 3px 0; color: #fff; font-weight: bold;" id="lblInvitado"></p>
+                    
                     <div class="qr-box"><img id="qrImage" src="" alt="Código QR"></div>
                     <p style="font-size: 11px; color: #a3928a; margin: 0;">Tu pase personal de acceso (QR)</p>
+                    
                     <div class="info-recuadro">
-                        <p style="color: #fca05f; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; font-size: 9px; margin-bottom: 4px;">Acreditación Oficial</p>
-                        <p style="font-weight: bold; color: #fff; margin-bottom: 4px; font-size: 12px;">Congreso Internacional de Prevención de Riesgos Laborales</p>
-                        <p><b>Lugar:</b> Hotel Marriott</p>
-                        <p><b>Fecha:</b> 19 de Agosto del 2026</p>
-                        <p><b>Hora:</b> 9:00 AM</p>
+                        <p style="color: #fca05f; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; font-size: 9px; margin: 0 0 2px 0;">Acreditación Oficial</p>
+                        <p><b>Pase Individual</b> vinculado al documento ingresado.</p>
                     </div>
                     <p class="instruccion-final">Presente este código QR desde su celular al ingresar.</p>
                 </div>
@@ -278,7 +276,10 @@
                         btn.innerText = "Enviar Confirmación";
                         btn.disabled = false;
                     } else if (res.result === "success") {
+                        // OCULTAMOS FORMULARIO Y LA CABECERA PARA GANAR ESPACIO VERTICAL MAXIMO
                         form.style.display = 'none';
+                        document.getElementById('cabeceraFormulario').style.display = 'none';
+                        
                         document.getElementById('contenedor-exito').style.display = 'block';
 
                         if (asistencia === "Sí") {
