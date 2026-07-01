@@ -19,30 +19,32 @@
             align-items: center; 
             min-height: 100vh; 
             margin: 0; 
-            padding: 25px; 
+            padding: 20px; 
             position: relative;
             background-color: #060302; 
             box-sizing: border-box;
             overflow-x: hidden;
         }
 
-        /* FONDO GENERAL DE LA PÁGINA (logofondo.jpg) */
+        /* FONDO GENERAL DE LA PÁGINA (logofondo.jpg) - CORREGIDO */
         body::after {
             content: "";
             position: fixed;
-            top: 25px; left: 25px; right: 25px; bottom: 25px;
+            /* Se eliminó el margen de 25px/38px para quitar el borde exterior */
+            top: 0; left: 0; right: 0; bottom: 0;
             background-image: url('logofondo.jpg');
-            background-size: cover;
+            
+            /* 'contain' garantiza que la imagen NUNCA se corte y se vea completa */
+            background-size: contain;
             background-position: center center;
             background-repeat: no-repeat;
             opacity: 0.55; 
             filter: contrast(1.1); 
             z-index: -1;
             pointer-events: none;
-            border-radius: 8px;
         }
 
-        /* CAJA DEL FORMULARIO COMPACTADA */
+        /* CAJA DEL FORMULARIO */
         .card { 
             background: linear-gradient(rgba(14, 8, 5, 0.35), rgba(14, 8, 5, 0.35)), url('formulario.jpg');
             background-size: cover;
@@ -68,7 +70,6 @@
 
         @media (max-width: 950px) {
             body { padding: 15px; }
-            body::after { top: 15px; left: 15px; right: 15px; bottom: 15px; }
             .card { margin: 0 auto; padding-top: 85px; }
         }
 
@@ -184,7 +185,6 @@
 <body>
 
     <div class="card">
-        <!-- CABECERA PRINCIPAL -->
         <div class="header-congreso" id="cabeceraFormulario">
             <div class="lema-fila1">Liderar en Zero:</div>
             <div class="lema-fila2">Transformando la SST en motor de Productividad</div>
@@ -220,7 +220,6 @@
             </div>
         </form>
 
-        <!-- CAJA DE ÉXITO -->
         <div id="contenedor-exito">
             <div id="vistaAsistira" style="display: none;">
                 <div class="preview-correo">
@@ -264,7 +263,6 @@
             const asistencia = document.getElementById('asistenciaSelect').value;
 
             const qrData = "DNI: " + dni + " | CELULAR: " + celular;
-            // Se añade el parámetro de formato para asegurar compatibilidad de dibujo en canvas
             const qrUrl = "https://quickchart.io/qr?text=" + encodeURIComponent(qrData) + "&format=png";
 
             fetch(scriptURL, { method: 'POST', body: new FormData(form)})
@@ -284,49 +282,39 @@
                             document.getElementById('qrImage').src = qrUrl;
                             document.getElementById('vistaAsistira').style.display = 'block';
                             
-                            // PROCESO DE GENERACIÓN DE IMAGEN COMPUESTA (Canvas)
                             document.getElementById('btnDescargar').addEventListener('click', () => {
                                 const imgQR = new Image();
-                                imgQR.crossOrigin = "anonymous"; // Evita problemas de seguridad al procesar la URL externa
+                                imgQR.crossOrigin = "anonymous"; 
                                 imgQR.src = qrUrl;
 
                                 imgQR.onload = function() {
-                                    // Crear el lienzo virtual para armar la tarjeta
                                     const canvas = document.createElement('canvas');
                                     const ctx = canvas.getContext('2d');
                                     
-                                    // Dimensiones de la tarjeta descargable (Estilo credencial)
                                     canvas.width = 400;
                                     canvas.height = 360;
 
-                                    // 1. Fondo Oscuro Corporativo
                                     ctx.fillStyle = "#120905";
                                     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-                                    // 2. Borde decorativo naranja
                                     ctx.strokeStyle = "#e0843a";
                                     ctx.lineWidth = 5;
                                     ctx.strokeRect(10, 10, canvas.width - 20, canvas.height - 20);
 
-                                    // 3. Texto: ¡Registro Confirmado!
                                     ctx.fillStyle = "#fca05f";
                                     ctx.font = "bold 20px Arial";
                                     ctx.textAlign = "center";
                                     ctx.fillText("¡Registro Confirmado!", canvas.width / 2, 45);
 
-                                    // 4. Texto: Nombre del Invitado
                                     ctx.fillStyle = "#ffffff";
                                     ctx.font = "15px Arial";
                                     ctx.fillText(nombreCompleto, canvas.width / 2, 75);
 
-                                    // 5. Dibujar fondo blanco sutil para el QR
                                     ctx.fillStyle = "#ffffff";
                                     ctx.fillRect((canvas.width / 2) - 80, 105, 160, 160);
 
-                                    // 6. Incrustar el Código QR
                                     ctx.drawImage(imgQR, (canvas.width / 2) - 75, 110, 150, 150);
 
-                                    // 7. Pie de tarjeta descriptivo
                                     ctx.fillStyle = "#a3928a";
                                     ctx.font = "italic 11px Arial";
                                     ctx.fillText("Pase Personal de Acreditación", canvas.width / 2, 295);
@@ -335,7 +323,6 @@
                                     ctx.font = "bold 11px Arial";
                                     ctx.fillText("Presente este pase impreso o digital al ingresar", canvas.width / 2, 320);
 
-                                    // 8. Ejecutar la descarga automática del archivo compuesto
                                     const link = document.createElement('a');
                                     link.download = 'Pase_Acceso_' + dni + '.png';
                                     link.href = canvas.toDataURL('image/png');
