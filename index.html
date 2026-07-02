@@ -16,7 +16,7 @@
             font-family: 'Raleway', sans-serif; 
             display: flex; 
             justify-content: center; 
-            align-items: flex-start; /* Permite controlar el posicionamiento preciso con márgenes */
+            align-items: flex-start; 
             min-height: 100vh; 
             margin: 0; 
             padding: 20px; 
@@ -41,7 +41,7 @@
             pointer-events: none;
         }
 
-        /* CAJA DEL FORMULARIO AGRANDADA Y POSICIONADA ABAJO DEL TEXTO CORPORATIVO */
+        /* CAJA DEL FORMULARIO CON ESPACIADO INTERNO PARA NO TAPAR EL TEXTO DE FORMULARIO.JPG */
         .card { 
             background: linear-gradient(rgba(14, 8, 5, 0.35), rgba(14, 8, 5, 0.35)), url('formulario.jpg');
             background-size: cover;
@@ -50,28 +50,28 @@
             backdrop-filter: blur(4px);
             -webkit-backdrop-filter: blur(4px);
             
-            /* Padding ampliado para aumentar el alto general de la caja */
-            padding: 60px 30px 40px 30px; 
+            /* PADDING TOP INCREMENTADO: Baja el contenido de la caja para liberar la parte superior de formulario.jpg */
+            padding: 150px 30px 40px 30px; 
             
             border-radius: 16px; 
             box-shadow: 0 25px 60px rgba(0, 0, 0, 0.95); 
-            max-width: 440px; /* Ancho ampliado para mayor presencia visual */
+            max-width: 440px; 
             width: 100%; 
             text-align: center; 
             border: 1px solid rgba(252, 160, 95, 0.45); 
             animation: subtleScaleIn 0.9s cubic-bezier(0.16, 1, 0.3, 1);
             box-sizing: border-box;
 
-            /* CONFIGURACIÓN DE ALTURA CRUCIAL PARA PROTEGER EL FONDO */
-            margin-top: 140px;   /* Se desplaza hacia abajo para despejar por completo el texto superior */
-            margin-bottom: 30px; 
-            margin-left: auto;   /* Desplazamiento al extremo derecho */
-            margin-right: 3%;    /* Ajuste de proximidad con el límite derecho de la ventana */
+            /* AJUSTE DE POSICIÓN EXTERNA (Bajado un poco más) */
+            margin-top: 190px;   
+            margin-bottom: 40px; 
+            margin-left: auto;   
+            margin-right: 3%;    
         }
 
         @media (max-width: 950px) {
             body { align-items: center; padding: 15px; }
-            .card { margin: 0 auto; padding-top: 45px; }
+            .card { margin: 40px auto; padding-top: 120px; }
         }
 
         .header-congreso {
@@ -128,7 +128,7 @@
         
         input, select { 
             width: 100%; 
-            padding: 12px 14px; /* Inputs ligeramente más grandes y legibles */
+            padding: 12px 14px; 
             margin: 6px 0; 
             border: 1px solid rgba(252, 160, 95, 0.50); 
             box-sizing: border-box; 
