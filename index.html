@@ -62,7 +62,7 @@
             animation: subtleScaleIn 0.9s cubic-bezier(0.16, 1, 0.3, 1);
             box-sizing: border-box;
 
-            /* AJUSTE DE POSICIÓN EXTERNA (Bajado un poco más) */
+            /* AJUSTE DE POSICIÓN EXTERNA */
             margin-top: 190px;   
             margin-bottom: 40px; 
             margin-left: auto;   
@@ -156,12 +156,34 @@
             color: #ffffff;
         }
         
+        /* BOTONES ACTUALIZADOS CON EL COLOR #FF6D46 */
         button, .btn-download { 
-            width: 100%; padding: 13px; background: #e0843a; color: white; border: none; border-radius: 6px;
-            cursor: pointer; letter-spacing: 1.5px; text-transform: uppercase; transition: background 0.3s, transform 0.2s; font-size: 12.5px; font-weight: 700; margin-top: 12px; display: block; text-decoration: none; box-sizing: border-box;
+            width: 100%; 
+            padding: 13px; 
+            background: #FF6D46; /* Color de fondo personalizado solicitado */
+            color: white; 
+            border: none; 
+            border-radius: 6px;
+            cursor: pointer; 
+            letter-spacing: 1.5px; 
+            text-transform: uppercase; 
+            transition: background 0.3s, transform 0.2s, box-shadow 0.3s; 
+            font-size: 12.5px; 
+            font-weight: 700; 
+            margin-top: 12px; 
+            display: block; 
+            text-decoration: none; 
+            box-sizing: border-box;
         }
-        button:hover, .btn-download:hover { background: #fca05f; box-shadow: 0 0 15px rgba(252, 160, 95, 0.45); }
-        button:active { transform: scale(0.99); }
+        
+        button:hover, .btn-download:hover { 
+            background: #ff8564; /* Color ligeramente más claro en hover para mantener consistencia dinámica */
+            box-shadow: 0 0 15px rgba(255, 109, 70, 0.5); 
+        }
+        
+        button:active { 
+            transform: scale(0.99); 
+        }
         
         #contenedor-exito { display: none; margin-top: 10px; animation: subtleScaleIn 0.5s ease-out; }
         
@@ -170,7 +192,7 @@
             color: #ffffff; 
             background-color: #120905; 
             padding: 15px; 
-            border: 2px solid #e0843a; 
+            border: 2px solid #FF6D46; /* Borde del cuadro de éxito también sincronizado */
             text-align: center; 
             border-radius: 8px; 
             margin-top: 5px; 
@@ -186,7 +208,6 @@
 <body>
 
     <div class="card">
-        <!-- CABECERA PRINCIPAL -->
         <div class="header-congreso" id="cabeceraFormulario">
             <div class="lema-fila1">Liderar en Zero:</div>
             <div class="lema-fila2">Transformando la SST en motor de Productividad</div>
@@ -222,7 +243,6 @@
             </div>
         </form>
 
-        <!-- CAJA DE ÉXITO -->
         <div id="contenedor-exito">
             <div id="vistaAsistira" style="display: none;">
                 <div class="preview-correo">
@@ -300,7 +320,8 @@
                                     ctx.fillStyle = "#120905";
                                     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-                                    ctx.strokeStyle = "#e0843a";
+                                    // Sincronizado el contorno del Canvas descargable con el nuevo color corporativo
+                                    ctx.strokeStyle = "#FF6D46";
                                     ctx.lineWidth = 5;
                                     ctx.strokeRect(10, 10, canvas.width - 20, canvas.height - 20);
 
