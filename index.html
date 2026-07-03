@@ -41,7 +41,7 @@
             pointer-events: none;
         }
 
-        /* CAJA DEL FORMULARIO CON ESPACIADO INTERNO PARA NO TAPAR EL TEXTO DE FORMULARIO.JPG */
+        /* CAJA DEL FORMULARIO COMPACTADA EN SU PARTE INFERIOR */
         .card { 
             background: linear-gradient(rgba(14, 8, 5, 0.35), rgba(14, 8, 5, 0.35)), url('formulario.jpg');
             background-size: cover;
@@ -50,8 +50,8 @@
             backdrop-filter: blur(4px);
             -webkit-backdrop-filter: blur(4px);
             
-            /* PADDING TOP INCREMENTADO: Baja el contenido de la caja para liberar la parte superior de formulario.jpg */
-            padding: 150px 30px 40px 30px; 
+            /* PARTE INFERIOR REDUCIDA: De 40px se bajó a 20px para subir el borde inferior */
+            padding: 150px 30px 20px 30px; 
             
             border-radius: 16px; 
             box-shadow: 0 25px 60px rgba(0, 0, 0, 0.95); 
@@ -62,7 +62,7 @@
             animation: subtleScaleIn 0.9s cubic-bezier(0.16, 1, 0.3, 1);
             box-sizing: border-box;
 
-            /* AJUSTE DE POSICIÓN EXTERNA */
+            /* MANTENER LA PARTE SUPERIOR EXACTAMENTE COMO ESTABA */
             margin-top: 190px;   
             margin-bottom: 40px; 
             margin-left: auto;   
@@ -76,7 +76,7 @@
 
         .header-congreso {
             margin-top: 0px; 
-            margin-bottom: 25px; 
+            margin-bottom: 15px; /* Reducido un poco para acercar más los inputs */
         }
         
         .lema-fila1 {
@@ -123,13 +123,14 @@
         }
 
         .form-fields-container {
-            padding-top: 5px; 
+            padding-top: 2px; 
         }
         
+        /* INPUTS MÁS JUNTOS Y COMPACTOS */
         input, select { 
             width: 100%; 
-            padding: 12px 14px; 
-            margin: 6px 0; 
+            padding: 10px 14px; /* Un poco menos de altura en el relleno */
+            margin: 3px 0;      /* MARGIN REDUCIDO A LA MITAD para juntar los campos */
             border: 1px solid rgba(252, 160, 95, 0.50); 
             box-sizing: border-box; 
             background: rgba(10, 5, 3, 0.95); 
@@ -156,11 +157,10 @@
             color: #ffffff;
         }
         
-        /* BOTONES ACTUALIZADOS CON EL COLOR #FF6D46 */
         button, .btn-download { 
             width: 100%; 
             padding: 13px; 
-            background: #FF6D46; /* Color de fondo personalizado solicitado */
+            background: #FF6D46; 
             color: white; 
             border: none; 
             border-radius: 6px;
@@ -170,14 +170,14 @@
             transition: background 0.3s, transform 0.2s, box-shadow 0.3s; 
             font-size: 12.5px; 
             font-weight: 700; 
-            margin-top: 12px; 
+            margin-top: 8px; /* Reducido ligeramente para armonizar con el bloque superior */
             display: block; 
             text-decoration: none; 
             box-sizing: border-box;
         }
         
         button:hover, .btn-download:hover { 
-            background: #ff8564; /* Color ligeramente más claro en hover para mantener consistencia dinámica */
+            background: #ff8564; 
             box-shadow: 0 0 15px rgba(255, 109, 70, 0.5); 
         }
         
@@ -192,7 +192,7 @@
             color: #ffffff; 
             background-color: #120905; 
             padding: 15px; 
-            border: 2px solid #FF6D46; /* Borde del cuadro de éxito también sincronizado */
+            border: 2px solid #FF6D46; 
             text-align: center; 
             border-radius: 8px; 
             margin-top: 5px; 
@@ -320,7 +320,6 @@
                                     ctx.fillStyle = "#120905";
                                     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-                                    // Sincronizado el contorno del Canvas descargable con el nuevo color corporativo
                                     ctx.strokeStyle = "#FF6D46";
                                     ctx.lineWidth = 5;
                                     ctx.strokeRect(10, 10, canvas.width - 20, canvas.height - 20);
