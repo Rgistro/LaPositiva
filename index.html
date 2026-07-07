@@ -50,7 +50,6 @@
             backdrop-filter: blur(4px);
             -webkit-backdrop-filter: blur(4px);
             
-            /* PARTE INFERIOR REDUCIDA: De 40px se bajó a 20px para subir el borde inferior */
             padding: 150px 30px 20px 30px; 
             
             border-radius: 16px; 
@@ -62,7 +61,6 @@
             animation: subtleScaleIn 0.9s cubic-bezier(0.16, 1, 0.3, 1);
             box-sizing: border-box;
 
-            /* MANTENER LA PARTE SUPERIOR EXACTAMENTE COMO ESTABA */
             margin-top: 190px;   
             margin-bottom: 40px; 
             margin-left: auto;   
@@ -76,7 +74,7 @@
 
         .header-congreso {
             margin-top: 0px; 
-            margin-bottom: 15px; /* Reducido un poco para acercar más los inputs */
+            margin-bottom: 15px; 
         }
         
         .lema-fila1 {
@@ -126,11 +124,10 @@
             padding-top: 2px; 
         }
         
-        /* INPUTS MÁS JUNTOS Y COMPACTOS */
         input, select { 
             width: 100%; 
-            padding: 10px 14px; /* Un poco menos de altura en el relleno */
-            margin: 3px 0;      /* MARGIN REDUCIDO A LA MITAD para juntar los campos */
+            padding: 10px 14px; 
+            margin: 3px 0;      
             border: 1px solid rgba(252, 160, 95, 0.50); 
             box-sizing: border-box; 
             background: rgba(10, 5, 3, 0.95); 
@@ -170,7 +167,7 @@
             transition: background 0.3s, transform 0.2s, box-shadow 0.3s; 
             font-size: 12.5px; 
             font-weight: 700; 
-            margin-top: 8px; /* Reducido ligeramente para armonizar con el bloque superior */
+            margin-top: 8px; 
             display: block; 
             text-decoration: none; 
             box-sizing: border-box;
@@ -203,11 +200,15 @@
         .info-recuadro { background-color: #1c100a; border: 1px solid rgba(252, 160, 95, 0.25); padding: 10px; border-radius: 4px; margin: 10px 0; text-align: left; }
         .info-recuadro p { margin: 4px 0; font-size: 11.5px; color: #e1d5cf; }
         .instruccion-final { font-size: 11.5px; color: #fca05f; font-weight: bold; margin-top: 10px; letter-spacing: 0.5px; }
+        
+        /* Estilo para el nuevo aviso de spam/correo */
+        .aviso-spam { font-size: 11px; color: #b5a49b; margin-top: 8px; line-height: 1.4; font-style: italic; }
     </style>
 </head>
 <body>
 
     <div class="card">
+        <!-- CABECERA PRINCIPAL -->
         <div class="header-congreso" id="cabeceraFormulario">
             <div class="lema-fila1">Liderar en Zero:</div>
             <div class="lema-fila2">Transformando la SST en motor de Productividad</div>
@@ -243,6 +244,7 @@
             </div>
         </form>
 
+        <!-- CAJA DE ÉXITO -->
         <div id="contenedor-exito">
             <div id="vistaAsistira" style="display: none;">
                 <div class="preview-correo">
@@ -257,6 +259,9 @@
                         <p><b>Pase Individual</b> vinculado al documento ingresado.</p>
                     </div>
                     <p class="instruccion-final">Presente este código QR desde su celular al ingresar.</p>
+                    
+                    <!-- NUEVO MENSAJE SOLICITADO -->
+                    <p class="aviso-spam">Se ha enviado el correo de confirmación conteniendo el código QR, revise su bandeja de no deseado o spam.</p>
                 </div>
                 <button type="button" id="btnDescargar" class="btn-download">Descargar Tarjeta de Acceso</button>
             </div>
